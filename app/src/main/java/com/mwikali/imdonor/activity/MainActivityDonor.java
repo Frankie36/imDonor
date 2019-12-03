@@ -36,8 +36,6 @@ public class MainActivityDonor extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-
         drawerLayout = findViewById(R.id.drawer);
         NavigationView navigationView = findViewById(R.id.nav_home_donor);
         FloatingActionButton fab = findViewById(R.id.fab);
