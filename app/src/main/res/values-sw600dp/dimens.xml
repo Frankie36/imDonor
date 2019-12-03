@@ -1,0 +1,41 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- standard metrics -->
+    <dimen name="spacing_normal">12dp</dimen>
+    <dimen name="spacing_slim">8dp</dimen>
+    <dimen name="spacing_micro">6dp</dimen>
+    <dimen name="padding_normal">24dp</dimen>
+
+    <!-- UI elements -->
+    <dimen name="banner_height">320dp</dimen>
+    <dimen name="feature_height">260dp</dimen>
+
+    <dimen name="product_image_size">96dp</dimen>
+    <dimen name="product_image_size_large">192dp</dimen>
+    <dimen name="product_image_size_medium">144dp</dimen>
+    <dimen name="tag_image_size">44dp</dimen>
+
+    <dimen name="item_spacing_micro">6dp</dimen>
+    <dimen name="item_spacing_slim">8dp</dimen>
+    <dimen name="element_spacing_normal">16dp</dimen>
+    <dimen name="content_padding_normal">32dp</dimen>
+
+    <dimen name="explore_grid_padding_quarter">6dp</dimen>
+
+    <dimen name="keyline_1">24dp</dimen>
+    <dimen name="keyline_2">80dp</dimen>
+    <dimen name="keyline_2_minus_16dp">64dp</dimen>
+    <dimen name="keyline_3_minus_8dp">82dp</dimen>
+    <dimen name="keyline_4">52dp</dimen>
+
+    <dimen name="text_size_xxxsmall">12sp</dimen>
+    <dimen name="text_size_xsmall">16sp</dimen>
+    <dimen name="text_size_small">17sp</dimen>
+    <dimen name="text_size_medium">19sp</dimen>
+    <dimen name="text_size_large">20sp</dimen>
+    <dimen name="text_size_xlarge">22sp</dimen>
+    <dimen name="text_size_xxlarge">24sp</dimen>
+    <dimen name="text_size_xxxlarge">28sp</dimen>
+
+    <dimen name="design_bottom_navigation_text_size" tools:override="true">12sp</dimen>
+    <dimen name="design_bottom_navigation_active_text_size" tools:override="true">12sp</dimen>
+</resources>
