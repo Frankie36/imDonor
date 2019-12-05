@@ -55,5 +55,27 @@
     <string name="ab_positive">AB+</string>
     <string name="ab_negative">AB-</string>
     <string name="hospital">Hospital</string>
+    <string name="done">Done</string>
+    <string name="err_first_name">First name is required</string>
+    <string name="err_dob">Date of birth is required</string>
+    <string name="err_last_name">Last name is required</string>
+    <string name="err_contact">Provide either your email or phone</string>
+    <string name="err_msg_email">Enter a valid email</string>
+    <string name="err_msg_number">Enter a valid phone number</string>
+    <string name="register_as_donor">Register as a donor?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="requirements">Minimum Requirements</string>
+    <string name="requirements_details">You are above 16 and below 65 years of age\n\nYou are above 50KGs but below 130KGs\n\nFor women, you aren\'t pregnant or haven\'t been pregnant in the past 12 months</string>
+    <string name="confirm">Confirm</string>
+    <string name="password">Password</string>
+    <string name="repeat_password">Repeat Password</string>
+    <string name="create_password">Create Password</string>
+    <string name="cancel">Cancel</string>
+    <string name="err_password">Enter a valid password</string>
+    <string name="err_password_mismatch">Passwords don\'t match</string>
+    <string name="err_not_old_enough">You can\'t donate blood if below the age of 16</string>
+    <string name="err_invalid_age">Enter a valid birth year</string>
+    <string name="err_old">It\'s not advisable to donate blood over the age of 65</string>
 
 </resources>

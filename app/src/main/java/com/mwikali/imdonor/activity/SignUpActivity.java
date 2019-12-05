@@ -9,14 +9,14 @@ import android.widget.TextView;
 
 import com.mwikali.imdonor.R;
 
-public class SingUpActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
 
     private boolean isDonor = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sing_up);
+        setContentView(R.layout.activity_sign_up);
 
         isDonor = getIntent().getExtras().getBoolean("isDonor");
 
@@ -25,9 +25,13 @@ public class SingUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (isDonor) {
-                    startActivity(new Intent(SingUpActivity.this, SignUpDonorDetails.class));
+                    Intent intent = new Intent(SignUpActivity.this, SignUpDonorDetails.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putBoolean("isUpdate", false);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
                 } else {
-                    startActivity(new Intent(SingUpActivity.this, SignUpBankDetails.class));
+                    startActivity(new Intent(SignUpActivity.this, SignUpBankDetails.class));
                 }
             }
         });

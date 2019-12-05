@@ -1,189 +1,243 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".activity.NewBloodRequestActivity">
 
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/spacing_normal"
-        tools:context=".activity.SignUpDonorDetails">
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-        <ImageView
-            android:id="@+id/img_logo"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/img_donor" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
 
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_normal"
+            tools:context=".activity.SignUpDonorDetails">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInptFirstName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:endIconDrawable="@drawable/ic_clear_text_black_24dp"
+                    app:endIconMode="clear_text">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtFirstName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/first_name"
+                        android:textColor="@color/body_text_1"
+                        android:textSize="@dimen/text_size_medium" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInptLastName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_normal"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_weight="1"
+                    app:endIconDrawable="@drawable/ic_clear_text_black_24dp"
+                    app:endIconMode="clear_text">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtLastName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/last_name"
+                        android:inputType="text"
+                        android:textColor="@color/body_text_1"
+                        android:textSize="@dimen/text_size_medium" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtInptFirstName"
-                android:layout_width="0dp"
+                android:id="@+id/txtInptDob"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:hint="@string/dob"
                 app:endIconDrawable="@drawable/ic_clear_text_black_24dp"
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtFirstName"
+                    android:id="@+id/edtDob"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/first_name"
+                    android:inputType="none"
                     android:textColor="@color/body_text_1"
                     android:textSize="@dimen/text_size_medium" />
+            </com.google.android.material.textfield.TextInputLayout>
 
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/swchDonor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:text="@string/register_as_donor"
+                android:textColor="@color/body_text_1"
+                android:textOff="@string/no"
+                android:textOn="@string/yes"
+                app:showText="true"
+                app:switchPadding="@dimen/spacing_normal" />
+
+            <TextView
+                android:id="@+id/tvBloodGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:text="@string/blood_group"
+                android:textColor="@color/body_text_1"
+                android:textSize="@dimen/text_size_medium" />
+
+            <HorizontalScrollView
+                android:id="@+id/hsBloodGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tvBloodGroup">
+
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/mbtgBloodgroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_normal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnBloodGroupAPos"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/a_positive" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnBloodGroupANeg"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/a_negative" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnBloodGroupBPos"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/b_positive" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnBloodGroupBNeg"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/b_negative" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnBloodGroupOPos"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/o_positive" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnBloodGroupONeg"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/o_negative" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnBloodGroupABPos"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ab_positive" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnBloodGroupABNeg"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ab_negative" />
+
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+            </HorizontalScrollView>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtInptEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:hint="@string/email"
+                app:endIconDrawable="@drawable/ic_clear_text_black_24dp"
+                app:endIconMode="clear_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/body_text_1"
+                    android:textSize="@dimen/text_size_medium" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtInptLastName"
-                android:layout_width="0dp"
+                android:id="@+id/txtInptPhone"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_normal"
-                android:layout_marginLeft="@dimen/spacing_normal"
-                android:layout_weight="1"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:hint="@string/phone"
                 app:endIconDrawable="@drawable/ic_clear_text_black_24dp"
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtLastName"
+                    android:id="@+id/edtPhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/last_name"
-                    android:inputType="number"
+                    android:inputType="phone"
                     android:textColor="@color/body_text_1"
                     android:textSize="@dimen/text_size_medium" />
-
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:hint="@string/dob"
-            app:endIconDrawable="@drawable/ic_clear_text_black_24dp"
-            app:endIconMode="clear_text">
+    </ScrollView>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text" />
-        </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:tint="@android:color/white"
+        app:srcCompat="@drawable/ic_navigate_next_black_24dp" />
 
-        <TextView
-            android:id="@+id/tvBloodGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:text="@string/blood_group"
-            android:textColor="@color/body_text_1"
-            android:textSize="@dimen/text_size_medium" />
-
-        <HorizontalScrollView
-            android:id="@+id/hsBloodGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/tvBloodGroup">
-
-            <com.google.android.material.button.MaterialButtonToggleGroup
-                android:id="@+id/mbtgBloodgroup"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_normal">
-
-                <com.google.android.material.button.MaterialButton
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/a_positive" />
-
-                <com.google.android.material.button.MaterialButton
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/a_negative" />
-
-                <com.google.android.material.button.MaterialButton
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/b_positive" />
-
-                <com.google.android.material.button.MaterialButton
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/b_negative" />
-
-                <com.google.android.material.button.MaterialButton
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/o_positive" />
-
-                <com.google.android.material.button.MaterialButton
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/o_negative" />
-
-                <com.google.android.material.button.MaterialButton
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ab_positive" />
-
-                <com.google.android.material.button.MaterialButton
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ab_negative" />
-
-            </com.google.android.material.button.MaterialButtonToggleGroup>
-        </HorizontalScrollView>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:hint="@string/email"
-            app:endIconDrawable="@drawable/ic_clear_text_black_24dp"
-            app:endIconMode="clear_text">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:hint="@string/phone"
-            app:endIconDrawable="@drawable/ic_clear_text_black_24dp"
-            app:endIconMode="clear_text">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="phone" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-    </LinearLayout>
-
-</ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

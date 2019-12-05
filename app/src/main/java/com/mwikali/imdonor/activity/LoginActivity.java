@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
         btnDonorLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this,SingUpActivity.class);
+                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putBoolean("isDonor",true);
                 intent.putExtras(bundle);
@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         btnBankLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this,SingUpActivity.class);
+                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putBoolean("isDonor",false);
                 intent.putExtras(bundle);
