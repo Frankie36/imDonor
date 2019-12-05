@@ -24,7 +24,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.mwikali.imdonor.R;
-import com.mwikali.imdonor.models.UserDonor;
 
 import java.util.Calendar;
 
@@ -53,9 +52,14 @@ public class SignUpDonorDetails extends AppCompatActivity {
             isUpdate = bundle.getBoolean("isUpdate");
         }
 
+        String toolbarTitle;
         if (isUpdate) {
+            toolbarTitle = getString(R.string.edit_account_details);
             fabPassword.setVisibility(View.GONE);
+        } else {
+            toolbarTitle = getString(R.string.add_account_details);
         }
+        getSupportActionBar().setTitle(toolbarTitle);
 
         //To stop keyboard from showing
         edtDob.setInputType(InputType.TYPE_NULL);
@@ -195,7 +199,7 @@ public class SignUpDonorDetails extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_donor_sign_up, menu);
+        getMenuInflater().inflate(R.menu.menu_sign_up, menu);
         if (!isUpdate) {
             menu.removeItem(R.id.action_done);
         }
@@ -283,7 +287,7 @@ public class SignUpDonorDetails extends AppCompatActivity {
         edtPassword = materialDialog.getCustomView().findViewById(R.id.edtPassword);
         edtRptPassword = materialDialog.getCustomView().findViewById(R.id.edtRptPassword);
 
-        if(!TextUtils.isEmpty(email)){
+        if (!TextUtils.isEmpty(email)) {
             edtEmail.setText(email);
         }
 

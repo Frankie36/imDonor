@@ -77,5 +77,12 @@
     <string name="err_not_old_enough">You can\'t donate blood if below the age of 16</string>
     <string name="err_invalid_age">Enter a valid birth year</string>
     <string name="err_old">It\'s not advisable to donate blood over the age of 65</string>
+    <string name="err_bank_name">Bood bank name is required</string>
+    <string name="err_location_name">Location name is required</string>
+    <string name="err_county">County name is required</string>
+    <string name="err_town">Town name is required</string>
+    <string name="err_street_address">Street address is required</string>
+    <string name="edit_account_details">Edit account details</string>
+    <string name="add_account_details">Add account details</string>
 
 </resources>

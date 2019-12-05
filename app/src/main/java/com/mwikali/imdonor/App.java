@@ -13,13 +13,14 @@ import com.mwikali.imdonor.models.UserDonor;
 
 public class App extends Application {
     public TinyDB tindyDb;
+    public static App app;
 
     @Override
     public void onCreate() {
         super.onCreate();
         tindyDb = new TinyDB(getApplicationContext());
 
-         if (tindyDb.getObject(Constants.KEY_DONOR, UserDonor.class) == null && tindyDb.getObject(Constants.KEY_BANK, UserBank.class) == null) {
+        if (tindyDb.getObject(Constants.KEY_DONOR, UserDonor.class) == null && tindyDb.getObject(Constants.KEY_BANK, UserBank.class) == null) {
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -40,6 +41,13 @@ public class App extends Application {
                 startActivity(intent);
             }
         }
+    }
+
+    public static App getInstance() {
+        if (app == null) {
+            app = new App();
+        }
+        return app;
     }
 
 }

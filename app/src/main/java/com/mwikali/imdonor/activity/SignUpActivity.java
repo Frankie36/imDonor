@@ -31,7 +31,11 @@ public class SignUpActivity extends AppCompatActivity {
                     intent.putExtras(bundle);
                     startActivity(intent);
                 } else {
-                    startActivity(new Intent(SignUpActivity.this, SignUpBankDetails.class));
+                    Intent intent = new Intent(SignUpActivity.this, SignUpBankDetails.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putBoolean("isUpdate", false);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
                 }
             }
         });
