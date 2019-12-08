@@ -59,9 +59,6 @@ public class MainActivityDonor extends AppCompatActivity {
                     case R.id.nav_news:
                         showFragment(NewsFragment.newInstance());
                         break;
-                    case R.id.nav_my_request:
-                        showFragment(MyRequestsFragment.newInstance("", ""));
-                        break;
                     case R.id.nav_donation_centres:
                         openLink("https://nbtskenya.or.ke/donation-centers/");
                         break;

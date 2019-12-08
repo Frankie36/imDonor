@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.multidex.MultiDexApplication;
+
 import com.mwikali.imdonor.activity.LoginActivity;
 import com.mwikali.imdonor.activity.MainActivity;
 import com.mwikali.imdonor.activity.MainActivityDonor;
@@ -11,13 +13,14 @@ import com.mwikali.imdonor.db.TinyDB;
 import com.mwikali.imdonor.models.UserBank;
 import com.mwikali.imdonor.models.UserDonor;
 
-public class App extends Application {
+public class App extends MultiDexApplication {
     public TinyDB tindyDb;
     public static App app;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        app = this;
         tindyDb = new TinyDB(getApplicationContext());
 
         if (tindyDb.getObject(Constants.KEY_DONOR, UserDonor.class) == null && tindyDb.getObject(Constants.KEY_BANK, UserBank.class) == null) {

@@ -4,12 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,25 +22,45 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.mwikali.imdonor.App;
+import com.mwikali.imdonor.Constants;
 import com.mwikali.imdonor.R;
+import com.mwikali.imdonor.models.UserDonor;
 
 import java.util.Calendar;
+
+import br.com.simplepass.loadingbutton.customViews.CircularProgressImageButton;
 
 public class SignUpDonorDetails extends AppCompatActivity {
 
     //Declare our views
+    CoordinatorLayout coodSignUpDonor;
     TextInputLayout txtInptFirstName, txtInptLastName, txtInptDob, txtInptEmail, txtInptPhone;
     TextInputEditText edtFirstName, edtLastName, edtDob, edtEmail, edtPhone;
     MaterialButtonToggleGroup mbtgBloodgroup;
     SwitchCompat swchDonor;
     String firstName, lastName, dob, email, phone, bloodGroup;
     boolean isDonor, isUpdate;
-    FloatingActionButton fabPassword;
+    CircularProgressImageButton fabPassword;
     DatePickerDialog picker;
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore database;
+    private String TAG = SignUpDonorDetails.class.getSimpleName();
+    MaterialDialog materialDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +69,9 @@ public class SignUpDonorDetails extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initViews();
+
+        mAuth = FirebaseAuth.getInstance();
+        database = FirebaseFirestore.getInstance();
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -195,6 +221,7 @@ public class SignUpDonorDetails extends AppCompatActivity {
         mbtgBloodgroup = findViewById(R.id.mbtgBloodgroup);
         swchDonor = findViewById(R.id.swchDonor);
         fabPassword = findViewById(R.id.fabPassword);
+        coodSignUpDonor = findViewById(R.id.coodSignUpDonor);
     }
 
     @Override
@@ -270,7 +297,7 @@ public class SignUpDonorDetails extends AppCompatActivity {
 
     private void showPasswordDialog() {
 
-        MaterialDialog materialDialog = new MaterialDialog.Builder(SignUpDonorDetails.this)
+        materialDialog = new MaterialDialog.Builder(SignUpDonorDetails.this)
                 .title(R.string.create_password)
                 .customView(R.layout.dialog_password, true)
                 .positiveText(R.string.confirm)
@@ -328,7 +355,7 @@ public class SignUpDonorDetails extends AppCompatActivity {
                     txtInptRptPassword.setErrorEnabled(false);
                 }
 
-                createAccount();
+                registerUser(email, password);
             }
         });
 
@@ -378,8 +405,67 @@ public class SignUpDonorDetails extends AppCompatActivity {
 
     }
 
-    private void createAccount() {
-        //UserDonor(1, firstName, lastName, dob, isDonor, bloodGroup, email, phone);
+    private void registerUser(String email, String password) {
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            materialDialog.dismiss();
+                            // Sign in success, update UI with the signed-in user's information
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            createUser(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Toast.makeText(SignUpDonorDetails.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+    private void createUser(final FirebaseUser user) {
+        fabPassword.startAnimation();
+        final UserDonor userDonor = new UserDonor(user.getUid(), firstName, lastName, dob, bloodGroup,
+                email, phone, "", "", isDonor);
+
+        database.collection(Constants.KEY_COLLECTION_USERS)
+                .document(user.getUid())
+                .set(userDonor)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully written!");
+
+                        fabPassword.revertAnimation();
+
+                        //Store user data to app
+                        App.getInstance().tindyDb.putObject(Constants.KEY_DONOR, userDonor);
+
+                        //Launch main activity class
+                        Intent intent = new Intent(getApplicationContext(), MainActivityDonor.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        Toast.makeText(getApplicationContext(), getString(R.string.welcome), Toast.LENGTH_SHORT).show();
+                    }
+                })
+
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error adding document", e);
+                        fabPassword.revertAnimation();
+                        Snackbar.make(coodSignUpDonor, getString(R.string.err_login), Snackbar.LENGTH_LONG)
+                                .setAction(getString(R.string.try_again), new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        createUser(user);
+                                    }
+                                }).show();
+                    }
+                });
     }
 
 }

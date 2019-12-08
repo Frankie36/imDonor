@@ -65,7 +65,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/body_text_1"
                         android:textSize="@dimen/text_size_medium"
-                        tools:text="4 Months ago" />
+                        tools:text="Broken arm" />
                 </LinearLayout>
 
                 <LinearLayout
