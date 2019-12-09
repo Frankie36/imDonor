@@ -150,7 +150,7 @@
                 android:id="@+id/edtHospitalName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/patient_name"
+                android:hint="@string/hospital_name"
                 android:textColor="@color/body_text_1"
                 android:textSize="@dimen/text_size_medium" />
 

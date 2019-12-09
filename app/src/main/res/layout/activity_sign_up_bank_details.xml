@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coodSignUpBank"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.SignUpBankDetails">
@@ -171,13 +172,16 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <br.com.simplepass.loadingbutton.customViews.CircularProgressImageButton
         android:id="@+id/fabPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/fab_size"
+        android:layout_height="@dimen/fab_size"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:tint="@android:color/white"
+        app:spinning_bar_color="@color/white"
+        app:spinning_bar_padding="6dp"
+        app:spinning_bar_width="4dp"
         app:srcCompat="@drawable/ic_navigate_next_black_24dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -7,6 +7,9 @@ public class DonationRequest {
     public int age, unit;
     public Date date;
 
+    public DonationRequest() {
+    }
+
     public DonationRequest(String id, String name, String treatment, String bloodGroup, String contactName, String contact, String altContact, String hospitalId, String hospital, int age, int unit, Date date) {
         this.id = id;
         this.name = name;

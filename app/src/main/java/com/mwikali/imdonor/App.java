@@ -1,13 +1,11 @@
 package com.mwikali.imdonor;
 
-import android.app.Application;
 import android.content.Intent;
-import android.os.Bundle;
 
 import androidx.multidex.MultiDexApplication;
 
 import com.mwikali.imdonor.activity.LoginActivity;
-import com.mwikali.imdonor.activity.MainActivity;
+import com.mwikali.imdonor.activity.MainActivityBank;
 import com.mwikali.imdonor.activity.MainActivityDonor;
 import com.mwikali.imdonor.db.TinyDB;
 import com.mwikali.imdonor.models.UserBank;
@@ -37,7 +35,7 @@ public class App extends MultiDexApplication {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             } else if (tindyDb.getObject(Constants.KEY_BANK, UserBank.class) != null) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivityBank.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

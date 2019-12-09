@@ -3,27 +3,48 @@ package com.mwikali.imdonor.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.mwikali.imdonor.App;
+import com.mwikali.imdonor.Constants;
 import com.mwikali.imdonor.R;
+import com.mwikali.imdonor.models.UserBank;
+
+import br.com.simplepass.loadingbutton.customViews.CircularProgressImageButton;
 
 public class SignUpBankDetails extends AppCompatActivity {
-
+    CoordinatorLayout coodSignUpBank;
     TextInputLayout txtInptBankName, txtInptLocation, txtInptEmail, txtInptPhone, txtInptCounty, txtInptTown, txtInptStreetAddress;
     TextInputEditText edtBankName, edtLocation, edtEmail, edtPhone, edtCounty, edtTown, edtStreetAddress;
-    FloatingActionButton fabPassword;
+    CircularProgressImageButton fabPassword;
     String name, location, email, phone, county, town, streetAddress;
     boolean isUpdate;
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore database;
+    MaterialDialog materialDialog;
+    private String TAG = SignUpBankDetails.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +53,9 @@ public class SignUpBankDetails extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initViews();
+
+        mAuth = FirebaseAuth.getInstance();
+        database = FirebaseFirestore.getInstance();
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -57,6 +81,7 @@ public class SignUpBankDetails extends AppCompatActivity {
     }
 
     public void initViews() {
+        coodSignUpBank = findViewById(R.id.coodSignUpBank);
         txtInptBankName = findViewById(R.id.txtInptBankName);
         txtInptLocation = findViewById(R.id.txtInptLocation);
         txtInptEmail = findViewById(R.id.txtInptEmail);
@@ -150,7 +175,7 @@ public class SignUpBankDetails extends AppCompatActivity {
 
     private void showPasswordDialog() {
 
-        MaterialDialog materialDialog = new MaterialDialog.Builder(SignUpBankDetails.this)
+        materialDialog = new MaterialDialog.Builder(SignUpBankDetails.this)
                 .title(R.string.create_password)
                 .customView(R.layout.dialog_password, true)
                 .positiveText(R.string.confirm)
@@ -190,6 +215,14 @@ public class SignUpBankDetails extends AppCompatActivity {
                     txtInptPassword.setErrorEnabled(false);
                 }
 
+                if (password.length() < 6) {
+                    edtPassword.requestFocus();
+                    txtInptPassword.setError(getString(R.string.err_password_weak));
+                    return;
+                } else {
+                    txtInptPassword.setErrorEnabled(false);
+                }
+
                 if (TextUtils.isEmpty(rptPassword.trim())) {
                     edtRptPassword.requestFocus();
                     txtInptRptPassword.setError(getString(R.string.err_password));
@@ -208,7 +241,7 @@ public class SignUpBankDetails extends AppCompatActivity {
                     txtInptRptPassword.setErrorEnabled(false);
                 }
 
-                createAccount();
+                registerBank(email, password);
             }
         });
 
@@ -258,8 +291,66 @@ public class SignUpBankDetails extends AppCompatActivity {
 
     }
 
-    private void createAccount() {
+    private void registerBank(String email, String password) {
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            materialDialog.dismiss();
+                            // Sign in success, update UI with the signed-in user's information
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            createUser(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Toast.makeText(SignUpBankDetails.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
 
+    private void createUser(final FirebaseUser user) {
+        fabPassword.startAnimation();
+        final UserBank userBank = new UserBank(user.getUid(), name, email, phone, county, town, streetAddress);
+
+        database.collection(Constants.KEY_COLLECTION_BANKS)
+                .document(user.getUid())
+                .set(userBank)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully written!");
+
+                        fabPassword.revertAnimation();
+
+                        //Store user data to app
+                        App.getInstance().tindyDb.putObject(Constants.KEY_BANK, userBank);
+
+                        //Launch main activity class
+                        Intent intent = new Intent(getApplicationContext(), MainActivityBank.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        Toast.makeText(getApplicationContext(), getString(R.string.welcome), Toast.LENGTH_SHORT).show();
+                    }
+                })
+
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error adding document", e);
+                        fabPassword.revertAnimation();
+                        Snackbar.make(coodSignUpBank, getString(R.string.err_login), Snackbar.LENGTH_LONG)
+                                .setAction(getString(R.string.try_again), new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        createUser(user);
+                                    }
+                                }).show();
+                    }
+                });
     }
 
 }

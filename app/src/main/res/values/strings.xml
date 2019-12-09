@@ -94,5 +94,8 @@
     <string name="err_login">Sorry couldn\'t log you in</string>
     <string name="login">Login</string>
     <string name="err_find_user">Couldn\'t find the user</string>
+    <string name="err_password_weak">You entered a weak password</string>
+    <string name="donors">Donors</string>
+    <string name="hospital_name">Hospital name</string>
 
 </resources>

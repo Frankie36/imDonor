@@ -26,6 +26,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.mwikali.imdonor.App;
 import com.mwikali.imdonor.Constants;
 import com.mwikali.imdonor.R;
+import com.mwikali.imdonor.models.UserBank;
 import com.mwikali.imdonor.models.UserDonor;
 
 import br.com.simplepass.loadingbutton.customViews.CircularProgressButton;
@@ -154,7 +155,13 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void checkIfUserExists(final FirebaseUser user) {
-        final DocumentReference docRef = database.collection(Constants.KEY_COLLECTION_USERS).document(user.getUid());
+        DocumentReference docRef;
+        if (isDonor) {
+            docRef = database.collection(Constants.KEY_COLLECTION_USERS).document(user.getUid());
+        } else {
+            docRef = database.collection(Constants.KEY_COLLECTION_BANKS).document(user.getUid());
+        }
+
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -165,18 +172,24 @@ public class SignUpActivity extends AppCompatActivity {
 
                         btnLogin.revertAnimation();
 
-                        UserDonor userDonor = document.toObject(UserDonor.class);
+                        Intent intent;
+                        if (isDonor) {
+                            UserDonor userDonor = document.toObject(UserDonor.class);
+                            //Store user data to app
+                            App.getInstance().tindyDb.putObject(Constants.KEY_DONOR, userDonor);
+                            intent = new Intent(getApplicationContext(), MainActivityDonor.class);
+                        } else {
+                            UserBank userBank = document.toObject(UserBank.class);
+                            //Store user data to app
+                            App.getInstance().tindyDb.putObject(Constants.KEY_DONOR, userBank);
+                            intent = new Intent(getApplicationContext(), MainActivityBank.class);
+                        }
 
-                        //Store user data to app
-                        App.getInstance().tindyDb.putObject(Constants.KEY_DONOR, userDonor);
-
-                        Intent intent = new Intent(getApplicationContext(), MainActivityDonor.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                         Toast.makeText(getApplicationContext(), getString(R.string.welcome), Toast.LENGTH_SHORT).show();
-
 
                     } else {
                         Log.d(TAG, "No such document");

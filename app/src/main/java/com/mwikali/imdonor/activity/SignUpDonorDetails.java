@@ -34,7 +34,6 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.mwikali.imdonor.App;
 import com.mwikali.imdonor.Constants;
@@ -332,6 +331,14 @@ public class SignUpDonorDetails extends AppCompatActivity {
                 if (TextUtils.isEmpty(password.trim())) {
                     edtPassword.requestFocus();
                     txtInptPassword.setError(getString(R.string.err_password));
+                    return;
+                } else {
+                    txtInptPassword.setErrorEnabled(false);
+                }
+
+                if (password.length() < 6) {
+                    edtPassword.requestFocus();
+                    txtInptPassword.setError(getString(R.string.err_password_weak));
                     return;
                 } else {
                     txtInptPassword.setErrorEnabled(false);

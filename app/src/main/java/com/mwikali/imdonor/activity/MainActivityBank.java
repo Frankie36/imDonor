@@ -3,9 +3,8 @@ package com.mwikali.imdonor.activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.navigation.NavigationView;
+import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -14,15 +13,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
-import android.view.MenuItem;
-import android.view.View;
-
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.mwikali.imdonor.R;
 import com.mwikali.imdonor.fragment.NewsFragment;
 import com.mwikali.imdonor.fragment.UrgentRequestsFragment;
 import com.mwikali.imdonor.utils.ArticleUtils;
 
-public class MainActivityDonor extends AppCompatActivity {
+public class MainActivityBank extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
@@ -30,12 +28,12 @@ public class MainActivityDonor extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_donor);
+        setContentView(R.layout.activity_main_bank);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         drawerLayout = findViewById(R.id.drawer);
-        NavigationView navigationView = findViewById(R.id.nav_home_donor);
+        NavigationView navigationView = findViewById(R.id.nav_home_bank);
         FloatingActionButton fab = findViewById(R.id.fab);
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -54,23 +52,8 @@ public class MainActivityDonor extends AppCompatActivity {
                     case R.id.nav_urgent_request:
                         showFragment(UrgentRequestsFragment.newInstance());
                         break;
-                    case R.id.nav_news:
+                    case R.id.nav_donors:
                         showFragment(NewsFragment.newInstance());
-                        break;
-                    case R.id.nav_donation_centres:
-                        openLink("https://nbtskenya.or.ke/donation-centers/");
-                        break;
-                    case R.id.nav_faq:
-                        openLink("https://nbtskenya.or.ke/faqs/");
-                        break;
-                    case R.id.nav_quiz:
-                        openLink("https://nbtskenya.or.ke/blood-drives/can-i-give-blood/eligibility-quiz/");
-                        break;
-                    case R.id.nav_before_attending:
-                        openLink("https://nbtskenya.or.ke/blood-drives/before-attending/");
-                        break;
-                    case R.id.nav_about_blood:
-                        openLink("https://nbtskenya.or.ke/blood-drives/learn-about-blood/");
                         break;
                 }
                 drawerLayout.closeDrawers();
@@ -109,7 +92,7 @@ public class MainActivityDonor extends AppCompatActivity {
     }
 
     private void openLink(String link) {
-        ArticleUtils.openCustomChromeTab(MainActivityDonor.this, Uri.parse(link));
+        ArticleUtils.openCustomChromeTab(MainActivityBank.this, Uri.parse(link));
     }
 
 }
