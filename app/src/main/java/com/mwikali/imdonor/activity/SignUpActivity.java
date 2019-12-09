@@ -181,7 +181,7 @@ public class SignUpActivity extends AppCompatActivity {
                         } else {
                             UserBank userBank = document.toObject(UserBank.class);
                             //Store user data to app
-                            App.getInstance().tindyDb.putObject(Constants.KEY_DONOR, userBank);
+                            App.getInstance().tindyDb.putObject(Constants.KEY_BANK, userBank);
                             intent = new Intent(getApplicationContext(), MainActivityBank.class);
                         }
 

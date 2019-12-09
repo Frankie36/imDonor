@@ -37,7 +37,7 @@
         <activity android:name=".activity.SignUpActivity" />
         <activity android:name=".activity.LoginActivity" />
         <activity
-            android:name=".activity.ProfileDonorActivity"
+            android:name=".activity.BankProfileActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

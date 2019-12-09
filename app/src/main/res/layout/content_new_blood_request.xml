@@ -51,7 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/last_name"
-                android:inputType="number"
+                android:inputType="text"
                 android:textColor="@color/body_text_1"
                 android:textSize="@dimen/text_size_medium" />
 
@@ -112,7 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/no_of_units"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:textColor="@color/body_text_1"
                 android:textSize="@dimen/text_size_medium" />
 
@@ -137,24 +137,42 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/txtInptHospitalName"
+
+        <TextView
+            android:id="@+id/tvSelectHospital"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:text="@string/select_hospital"
+            android:textSize="@dimen/text_size_medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtInptRequiredDate" />
+
+        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+            android:id="@+id/spnHospital"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_normal"
-            app:endIconDrawable="@drawable/ic_clear_text_black_24dp"
-            app:endIconMode="clear_text"
-            app:layout_constraintTop_toBottomOf="@id/txtInptRequiredDate">
+            android:layout_marginTop="@dimen/spacing_slim"
+            app:layout_constraintTop_toBottomOf="@id/tvSelectHospital" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtHospitalName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/hospital_name"
-                android:textColor="@color/body_text_1"
-                android:textSize="@dimen/text_size_medium" />
+        <!--        <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInptHospitalName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    app:endIconDrawable="@drawable/ic_clear_text_black_24dp"
+                    app:endIconMode="clear_text"
+                    app:layout_constraintTop_toBottomOf="@id/txtInptRequiredDate">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtHospitalName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/hospital_name"
+                        android:textColor="@color/body_text_1"
+                        android:textSize="@dimen/text_size_medium" />
+
+                </com.google.android.material.textfield.TextInputLayout>-->
 
         <TextView
             android:id="@+id/tvBloodGroup"
@@ -165,7 +183,7 @@
             android:textColor="@color/body_text_1"
             android:textSize="@dimen/text_size_medium"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtInptHospitalName" />
+            app:layout_constraintTop_toBottomOf="@id/spnHospital" />
 
         <HorizontalScrollView
             android:id="@+id/hsBloodGroup"
@@ -177,7 +195,8 @@
                 android:id="@+id/mbtgBloodgroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_normal">
+                android:layout_marginTop="@dimen/spacing_normal"
+                app:singleSelection="true">
 
                 <com.google.android.material.button.MaterialButton
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
@@ -244,6 +263,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/contact_no"
+                android:inputType="phone"
                 android:textColor="@color/body_text_1"
                 android:textSize="@dimen/text_size_medium" />
 
@@ -275,6 +295,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_normal"
+            android:visibility="gone"
             app:endIconDrawable="@drawable/ic_clear_text_black_24dp"
             app:endIconMode="clear_text"
             app:layout_constraintTop_toBottomOf="@id/txtInptAltContactNo">
@@ -284,6 +305,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/requested_by"
+                android:inputType="phone"
                 android:textColor="@color/body_text_1"
                 android:textSize="@dimen/text_size_medium" />
 

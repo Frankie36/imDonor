@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ProfileDonorActivity">
+    tools:context=".activity.BankProfileActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -24,30 +24,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context=".activity.ProfileDonorActivity"
-        tools:showIn="@layout/activity_profile_donor">
-
-        <TextView
-            android:id="@+id/tvCynthia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cynthia"
-            android:textColor="@android:color/holo_purple"
-            android:textSize="70sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tvNameTwo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Frank"
-            android:textSize="70sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvCynthia" />
+        tools:context=".activity.BankProfileActivity"
+        tools:showIn="@layout/activity_bank_profile">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

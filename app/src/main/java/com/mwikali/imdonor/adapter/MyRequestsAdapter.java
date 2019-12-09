@@ -35,7 +35,7 @@ public class MyRequestsAdapter extends RecyclerView.Adapter<MyRequestsAdapter.Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         DonationRequest donationRequest = donationRequestList.get(position);
         holder.tvBloodType.setText(donationRequest.bloodGroup);
-        holder.tvName.setText(donationRequest.name);
+        holder.tvName.setText(donationRequest.firstName);
         holder.tvTreatment.setText(donationRequest.treatment);
         holder.tvHospital.setText(donationRequest.hospital);
     }

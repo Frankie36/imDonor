@@ -15,4 +15,9 @@ public class UserBank {
         this.town = town;
         this.streetAddress = streetAddress;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

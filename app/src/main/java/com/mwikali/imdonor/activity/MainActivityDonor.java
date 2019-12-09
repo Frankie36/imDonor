@@ -41,7 +41,11 @@ public class MainActivityDonor extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), NewBloodRequestActivity.class));
+                Intent intent = new Intent(getApplicationContext(), NewBloodRequestActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putBoolean("isDonor", true);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
 

@@ -11,27 +11,22 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
-public class ProfileDonorActivity extends AppCompatActivity {
+public class BankProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile_donor);
+        setContentView(R.layout.activity_bank_profile);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = findViewById(R.id.fab);
-        final TextView tvCynthia;
-        tvCynthia = findViewById(R.id.tvCynthia);
-
-        int age = 10;
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tvCynthia.setText("Mwikali Mutua");
+
             }
         });
     }
