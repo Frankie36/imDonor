@@ -123,31 +123,33 @@ public class NewBloodRequestActivity extends AppCompatActivity {
         mbtgBloodgroup.addOnButtonCheckedListener(new MaterialButtonToggleGroup.OnButtonCheckedListener() {
             @Override
             public void onButtonChecked(MaterialButtonToggleGroup group, int checkedId, boolean isChecked) {
-                switch (checkedId) {
-                    case R.id.btnBloodGroupAPos:
-                        bloodGroup = getString(R.string.a_positive);
-                        break;
-                    case R.id.btnBloodGroupANeg:
-                        bloodGroup = getString(R.string.a_negative);
-                        break;
-                    case R.id.btnBloodGroupBPos:
-                        bloodGroup = getString(R.string.b_positive);
-                        break;
-                    case R.id.btnBloodGroupBNeg:
-                        bloodGroup = getString(R.string.b_negative);
-                        break;
-                    case R.id.btnBloodGroupOPos:
-                        bloodGroup = getString(R.string.o_positive);
-                        break;
-                    case R.id.btnBloodGroupONeg:
-                        bloodGroup = getString(R.string.o_negative);
-                        break;
-                    case R.id.btnBloodGroupABPos:
-                        bloodGroup = getString(R.string.ab_positive);
-                        break;
-                    case R.id.btnBloodGroupABNeg:
-                        bloodGroup = getString(R.string.ab_negative);
-                        break;
+                if (isChecked) {
+                    switch (checkedId) {
+                        case R.id.btnBloodGroupAPos:
+                            bloodGroup = getString(R.string.a_positive);
+                            break;
+                        case R.id.btnBloodGroupANeg:
+                            bloodGroup = getString(R.string.a_negative);
+                            break;
+                        case R.id.btnBloodGroupBPos:
+                            bloodGroup = getString(R.string.b_positive);
+                            break;
+                        case R.id.btnBloodGroupBNeg:
+                            bloodGroup = getString(R.string.b_negative);
+                            break;
+                        case R.id.btnBloodGroupOPos:
+                            bloodGroup = getString(R.string.o_positive);
+                            break;
+                        case R.id.btnBloodGroupONeg:
+                            bloodGroup = getString(R.string.o_negative);
+                            break;
+                        case R.id.btnBloodGroupABPos:
+                            bloodGroup = getString(R.string.ab_positive);
+                            break;
+                        case R.id.btnBloodGroupABNeg:
+                            bloodGroup = getString(R.string.ab_negative);
+                            break;
+                    }
                 }
             }
         });

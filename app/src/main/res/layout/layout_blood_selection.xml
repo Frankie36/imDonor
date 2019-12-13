@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.button.MaterialButtonToggleGroup android:id="@+id/mbtgBloodgroup"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:singleSelection="true"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBloodGroupAPos"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/a_positive" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBloodGroupANeg"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/a_negative" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBloodGroupBPos"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/b_positive" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBloodGroupBNeg"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/b_negative" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBloodGroupOPos"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/o_positive" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBloodGroupONeg"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/o_negative" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBloodGroupABPos"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ab_positive" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBloodGroupABNeg"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ab_negative" />
+
+</com.google.android.material.button.MaterialButtonToggleGroup>
