@@ -5,4 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".fragment.UrgentRequestsFragment">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvUrgentRequests"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/list_item_requests" />
+
 </FrameLayout>

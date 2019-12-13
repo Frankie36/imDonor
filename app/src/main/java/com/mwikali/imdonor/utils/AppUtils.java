@@ -1,9 +1,13 @@
 package com.mwikali.imdonor.utils;
 
 import android.content.Context;
+import android.content.Intent;
 
 import com.mwikali.imdonor.App;
 import com.mwikali.imdonor.Constants;
+import com.mwikali.imdonor.activity.LoginActivity;
+import com.mwikali.imdonor.activity.SignUpActivity;
+import com.mwikali.imdonor.db.TinyDB;
 import com.mwikali.imdonor.models.UserBank;
 import com.mwikali.imdonor.models.UserDonor;
 
@@ -14,7 +18,7 @@ public class AppUtils {
         return userDonor;
     }
 
-    public String getDonorUniqueId() {
+    public String generateDonorUniqueId() {
         UserDonor userDonor = App.getInstance().tindyDb.getObject(Constants.KEY_DONOR, UserDonor.class);
         return getNowTimeStamp() + userDonor.id;
     }
@@ -24,7 +28,7 @@ public class AppUtils {
         return userBank;
     }
 
-    public String getBankUniqueId() {
+    public String generateBankUniqueId() {
         UserBank userBank = App.getInstance().tindyDb.getObject(Constants.KEY_BANK, UserBank.class);
         return getNowTimeStamp() + userBank.id;
     }
@@ -48,5 +52,18 @@ public class AppUtils {
 
     private Long getNowTimeStamp() {
         return System.currentTimeMillis();
+    }
+
+    private void clearDb() {
+        App.getInstance().tindyDb.clear();
+    }
+
+    public void logout(Context context) {
+        clearDb();
+        Intent intent = new Intent(context, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
     }
 }

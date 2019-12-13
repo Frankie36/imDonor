@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -18,12 +20,17 @@ import com.google.android.material.navigation.NavigationView;
 import com.mwikali.imdonor.R;
 import com.mwikali.imdonor.fragment.NewsFragment;
 import com.mwikali.imdonor.fragment.UrgentRequestsFragment;
+import com.mwikali.imdonor.models.UserBank;
+import com.mwikali.imdonor.utils.AppUtils;
 import com.mwikali.imdonor.utils.ArticleUtils;
 
 public class MainActivityBank extends AppCompatActivity {
 
+    private TextView tvName, tvEmail;
+    private ImageView imgProfile;
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
+    private UserBank userBank;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +42,19 @@ public class MainActivityBank extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer);
         NavigationView navigationView = findViewById(R.id.nav_home_bank);
         FloatingActionButton fab = findViewById(R.id.fab);
+
+        // Navigation view header
+        View navHeader = navigationView.getHeaderView(0);
+        tvName = navHeader.findViewById(R.id.tvName);
+        tvEmail = navHeader.findViewById(R.id.tvEmail);
+        imgProfile = navHeader.findViewById(R.id.imgProfile);
+
+        navHeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), BankProfileActivity.class));
+            }
+        });
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,4 +119,13 @@ public class MainActivityBank extends AppCompatActivity {
         ArticleUtils.openCustomChromeTab(MainActivityBank.this, Uri.parse(link));
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        userBank = new AppUtils().getBankUserAccount();
+        if (userBank != null) {
+            tvName.setText(userBank.name);
+            tvEmail.setText(userBank.email);
+        }
+    }
 }

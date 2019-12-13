@@ -63,6 +63,7 @@
     <string name="err_msg_email">Enter a valid email</string>
     <string name="err_msg_number">Enter a valid phone number</string>
     <string name="register_as_donor">Register as a donor?</string>
+    <string name="registered_as_donor">Registered as a donor</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="requirements">Minimum Requirements</string>
@@ -107,5 +108,14 @@
     <string name="select_hospital">Select hospital</string>
     <string name="success_blood_request">Blood request posted successfully</string>
     <string name="err_processing_request">There seems to be a problem processing your request</string>
+    <string name="days_to_donation">Days to donation</string>
+    <string name="is_donor">Donor?</string>
+    <string name="Hrs">Hrs</string>
+    <string name="action_logout">Logout</string>
+    <string name="millisecond">ms</string>
+    <string name="minute">Min</string>
+    <string name="second">Sec</string>
+    <string name="days">Days</string>
+    <string name="till_donation_date">till you can donate</string>
 
 </resources>

@@ -14,7 +14,8 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:contentScrim="@color/colorPrimary">
+            app:contentScrim="@color/colorPrimary"
+            app:titleEnabled="false">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -24,9 +25,123 @@
                 android:background="?attr/colorPrimary"
                 app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay" />
 
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="?actionBarSize"
+                android:layout_marginBottom="?actionBarSize"
+                android:orientation="horizontal"
+                android:padding="@dimen/spacing_normal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <cn.iwgang.countdownview.CountdownView
+                        android:id="@+id/ctdnDonation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:isHideTimeBackground="false"
+                        app:isShowDay="true"
+                        app:isShowHour="true"
+                        app:isShowMillisecond="false"
+                        app:isShowMinute="true"
+                        app:isShowSecond="false"
+                        app:isTimeTextBold="true"
+                        app:suffixDay="@string/days"
+                        app:suffixGravity="bottom"
+                        app:suffixHour="@string/Hrs"
+                        app:suffixMillisecond="@string/millisecond"
+                        app:suffixMinute="@string/minute"
+                        app:suffixSecond="@string/second"
+                        app:suffixTextColor="@color/colorTextWhite"
+                        app:suffixTextSize="@dimen/text_size_xsmall"
+                        app:timeBgDivisionLineSize="1dp"
+                        app:timeBgRadius="3dp"
+                        app:timeBgSize="40dp"
+                        app:timeTextColor="@color/colorTextWhite"
+                        app:timeTextSize="@dimen/text_size_xxxlarge" />
+
+                    <TextView
+                        android:id="@+id/tvCountdown"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_slim"
+                        android:text="@string/till_donation_date"
+                        android:textColor="@color/colorTextWhite"
+                        app:layout_constraintTop_toBottomOf="@id/ctdnDonation" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/element_spacing_normal"
+                    android:layout_marginLeft="@dimen/element_spacing_normal"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorTextWhite"
+                        android:textSize="@dimen/text_size_large"
+                        android:textStyle="bold"
+                        tools:text="Bucky Barnes" />
+
+                    <TextView
+                        android:id="@+id/tvEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorTextWhite"
+                        android:textSize="@dimen/text_size_medium"
+                        tools:text="Bucky@wintersoldier.com" />
+
+                    <TextView
+                        android:id="@+id/tvPhone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorTextWhite"
+                        android:textSize="@dimen/text_size_medium"
+                        tools:text="0700000000" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvBloodGroup"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/bg_blood_type"
+                            android:padding="@dimen/spacing_slim"
+                            android:textColor="@color/colorTextWhite"
+                            android:textSize="@dimen/text_size_xxxlarge"
+                            tools:text="O+" />
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/swtchIsDonor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_large"
+                            android:layout_marginLeft="@dimen/spacing_large"
+                            android:gravity="center_vertical"
+                            android:text="@string/is_donor"
+                            android:textOff="@string/no"
+                            android:textOn="@string/yes"
+                            app:showText="true" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
 
             </LinearLayout>
 

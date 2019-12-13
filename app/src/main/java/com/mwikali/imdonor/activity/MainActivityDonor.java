@@ -16,16 +16,23 @@ import androidx.fragment.app.Fragment;
 
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.mwikali.imdonor.R;
 import com.mwikali.imdonor.fragment.NewsFragment;
 import com.mwikali.imdonor.fragment.UrgentRequestsFragment;
+import com.mwikali.imdonor.models.UserDonor;
+import com.mwikali.imdonor.utils.AppUtils;
 import com.mwikali.imdonor.utils.ArticleUtils;
 
 public class MainActivityDonor extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
+    private TextView tvName, tvEmail;
+    private ImageView imgProfile;
+    private UserDonor userDonor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +44,19 @@ public class MainActivityDonor extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer);
         NavigationView navigationView = findViewById(R.id.nav_home_donor);
         FloatingActionButton fab = findViewById(R.id.fab);
+
+        // Navigation view header
+        View navHeader = navigationView.getHeaderView(0);
+        tvName = navHeader.findViewById(R.id.tvName);
+        tvEmail = navHeader.findViewById(R.id.tvEmail);
+        imgProfile = navHeader.findViewById(R.id.imgProfile);
+
+        navHeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), DonorProfileActivity.class));
+            }
+        });
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +70,8 @@ public class MainActivityDonor extends AppCompatActivity {
         });
 
         setUpNavigationView();
+
+        showFragment(UrgentRequestsFragment.newInstance());
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -77,8 +99,18 @@ public class MainActivityDonor extends AppCompatActivity {
                         openLink("https://nbtskenya.or.ke/blood-drives/learn-about-blood/");
                         break;
                 }
+
+                //Checking if the item is in checked state or not, if not make it in checked state
+                if (menuItem.isChecked()) {
+                    menuItem.setChecked(false);
+                } else {
+                    menuItem.setChecked(true);
+                }
+
+                menuItem.setChecked(true);
+
                 drawerLayout.closeDrawers();
-                return false;
+                return true;
             }
         });
     }
@@ -116,4 +148,18 @@ public class MainActivityDonor extends AppCompatActivity {
         ArticleUtils.openCustomChromeTab(MainActivityDonor.this, Uri.parse(link));
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        userDonor = new AppUtils().getDonorUserAccount();
+        if (userDonor != null) {
+            tvName.setText(String.format("%s %s", userDonor.firstName, userDonor.lastName));
+            if (!userDonor.email.isEmpty()) {
+                tvEmail.setText(userDonor.email);
+            } else {
+                tvEmail.setText(userDonor.phone);
+            }
+        }
+    }
 }

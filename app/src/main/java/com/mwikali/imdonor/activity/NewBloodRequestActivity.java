@@ -274,20 +274,22 @@ public class NewBloodRequestActivity extends AppCompatActivity {
     private void createBloodRequest() {
         fabRequest.startAnimation();
 
-        String uniqueId, contactName;
+        String uniqueId, userId, contactName;
         if (isDonor) {
-            uniqueId = new AppUtils().getDonorUniqueId();
+            uniqueId = new AppUtils().generateDonorUniqueId();
             UserDonor userDonor = new AppUtils().getDonorUserAccount();
+            userId = userDonor.id;
             contactName = userDonor.firstName + " " + userDonor.lastName;
         } else {
-            uniqueId = new AppUtils().getBankUniqueId();
+            uniqueId = new AppUtils().generateBankUniqueId();
             UserBank userBank = new AppUtils().getBankUserAccount();
+            userId = userBank.id;
             contactName = userBank.name;
         }
 
-        final DonationRequest donationRequest = new DonationRequest(uniqueId, firstName, lastName, treatment,
+        final DonationRequest donationRequest = new DonationRequest(uniqueId, userId, firstName, lastName, treatment,
                 bloodGroup, contactName, contactNo, altContactNo, hospital.id,
-                hospital.name, requiredDate, Integer.parseInt(age), Float.parseFloat(noOfUnits), FieldValue.serverTimestamp());
+                hospital.name, requiredDate, Integer.parseInt(age), Float.parseFloat(noOfUnits));
 
         database.collection(Constants.KEY_COLLECTION_BLOOD_REQUESTS)
                 .document(uniqueId)
