@@ -13,6 +13,14 @@
         android:theme="@style/AppTheme.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".activity.NewDonationActivity"
+            android:label="@string/title_activity_new_donation"
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar"></activity>
+        <activity
+            android:name=".activity.NewsDetailActivity"
+            android:label="@string/title_activity_news_detail"
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
+        <activity
             android:name=".activity.DonorProfileActivity"
             android:label="@string/title_activity_donor_profile"
             android:theme="@style/AppTheme.NoActionBar.NoActionBar" />

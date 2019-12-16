@@ -105,6 +105,7 @@
     <string name="err_hosp_name">Enter a valid hospital name</string>
     <string name="err_phone">Enter a valid phone number</string>
     <string name="err_blood_group">Select the patient\'s blood group</string>
+    <string name="err_group">Select the donor\'s blood group</string>
     <string name="select_hospital">Select hospital</string>
     <string name="success_blood_request">Blood request posted successfully</string>
     <string name="err_processing_request">There seems to be a problem processing your request</string>
@@ -117,5 +118,21 @@
     <string name="second">Sec</string>
     <string name="days">Days</string>
     <string name="till_donation_date">till you can donate</string>
+    <string name="title_activity_news_detail">News Details</string>
+    <string name="read_more">Read More</string>
+    <string name="title_activity_new_donation">New Donation</string>
+    <string name="search_donor">Search for Donor</string>
+    <string name="select_donor">Select a Donor</string>
+    <string name="donation_date">Donation date</string>
+    <string name="donor_weight">Donor Weight</string>
+    <string name="hb">Hb</string>
+    <string name="hepA">Hepatitis A</string>
+    <string name="hepB">Hepatitis B</string>
+    <string name="hepC">Hepatitis C</string>
+    <string name="hiv">HIV</string>
+    <string name="syphilis">Syphilis</string>
+    <string name="check_below_if_positive">Check below if positive</string>
+    <string name="err_weight">Enter valid weight</string>
+    <string name="err_hb">Enter valid Hb</string>
 
 </resources>

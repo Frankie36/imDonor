@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/spacing_normal"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity.NewDonationActivity"
+    tools:showIn="@layout/activity_new_donation">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtInptDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_normal"
+        app:endIconDrawable="@drawable/ic_clear_text_black_24dp"
+        app:endIconMode="clear_text"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/donation_date"
+            android:textColor="@color/body_text_1"
+            android:textSize="@dimen/text_size_medium" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+        android:id="@+id/spnDonors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_normal"
+        app:hintText="@string/search_donor"
+        app:layout_constraintTop_toBottomOf="@id/txtInptDate" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtInptWeight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_normal"
+        app:endIconDrawable="@drawable/ic_clear_text_black_24dp"
+        app:endIconMode="clear_text"
+        app:layout_constraintTop_toBottomOf="@id/spnDonors">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtWeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/donor_weight"
+            android:textColor="@color/body_text_1"
+            android:textSize="@dimen/text_size_medium" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <TextView
+        android:id="@+id/tvBloodGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:text="@string/blood_group"
+        android:textColor="@color/body_text_1"
+        android:textSize="@dimen/text_size_medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtInptWeight" />
+
+    <HorizontalScrollView
+        android:id="@+id/hsBloodGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvBloodGroup">
+
+        <include layout="@layout/layout_blood_selection" />
+
+    </HorizontalScrollView>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtInptHb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_normal"
+        app:endIconDrawable="@drawable/ic_clear_text_black_24dp"
+        app:endIconMode="clear_text"
+        app:layout_constraintTop_toBottomOf="@id/hsBloodGroup">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtHb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hb"
+            android:inputType="numberDecimal"
+            android:textColor="@color/body_text_1"
+            android:textSize="@dimen/text_size_medium" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <TextView
+        android:id="@+id/check_prompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:text="@string/check_below_if_positive"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtInptHb" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/check_prompt">
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <CheckBox
+                android:id="@+id/chckHepB"
+                android:layout_weight="1"
+                android:text="@string/hepB" />
+
+            <CheckBox
+                android:id="@+id/chckHepC"
+                android:layout_weight="1"
+                android:text="@string/hepC" />
+        </TableRow>
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <CheckBox
+                android:id="@+id/chckHiv"
+                android:layout_weight="1"
+                android:text="@string/hiv" />
+
+            <CheckBox
+                android:id="@+id/chckSyphilis"
+                android:layout_weight="1"
+                android:text="@string/syphilis" />
+        </TableRow>
+
+    </TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
