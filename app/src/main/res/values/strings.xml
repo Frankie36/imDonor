@@ -134,5 +134,7 @@
     <string name="check_below_if_positive">Check below if positive</string>
     <string name="err_weight">Enter valid weight</string>
     <string name="err_hb">Enter valid Hb</string>
+    <string name="success_blood_donation">Blood donation captured successfully</string>
+    <string name="blood_bank_name">Blood bank name</string>
 
 </resources>

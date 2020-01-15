@@ -6,4 +6,5 @@ public class Constants {
     public static String KEY_COLLECTION_USERS = "users";
     public static String KEY_COLLECTION_BANKS = "banks";
     public static String KEY_COLLECTION_BLOOD_REQUESTS = "bloodRequests";
+    public static String KEY_COLLECTION_BLOOD_DONATIONS = "bloodDonations";
 }

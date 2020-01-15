@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coodNewDonation"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.NewDonationActivity">
@@ -22,12 +23,16 @@
 
     <include layout="@layout/content_new_donation" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabUploadDonor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <br.com.simplepass.loadingbutton.customViews.CircularProgressImageButton
+        android:id="@+id/fabUploadDonation"
+        android:layout_width="@dimen/fab_size"
+        android:layout_height="@dimen/fab_size"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
+        android:tint="@android:color/white"
+        app:spinning_bar_color="@color/white"
+        app:spinning_bar_padding="6dp"
+        app:spinning_bar_width="4dp"
         app:srcCompat="@drawable/ic_send_black_24dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

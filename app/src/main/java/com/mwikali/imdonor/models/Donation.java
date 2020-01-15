@@ -4,13 +4,14 @@ import com.google.firebase.firestore.Exclude;
 import com.google.firebase.firestore.FieldValue;
 
 public class Donation {
-    public String donationId, donorId, bankId, donorName, bankName, date, weight, bloodGroup, hiv, hepB, hepC, syphillis, hb, bp;
+    public String donationId, donorId, bankId, donorName, bankName, date, weight, bloodGroup, hb, bp;
+    public boolean hiv, hepB, hepC, syphillis;
     public Object timestamp;
 
     public Donation() {
     }
 
-    public Donation(String donationId, String donorId, String bankId, String donorName, String bankName, String date, String weight, String bloodGroup, String hiv, String hepB, String hepC, String syphillis, String hb, String bp) {
+    public Donation(String donationId, String donorId, String bankId, String donorName, String bankName, String date, String weight, String bloodGroup, boolean hiv, boolean hepB, boolean hepC, boolean syphillis, String hb, String bp) {
         this.donationId = donationId;
         this.donorId = donorId;
         this.bankId = bankId;
@@ -29,7 +30,7 @@ public class Donation {
     }
 
     @Exclude
-    public long getCreatedTimestampLong(){
-        return (long)timestamp;
+    public long getCreatedTimestampLong() {
+        return (long) timestamp;
     }
 }

@@ -42,4 +42,5 @@
     <dimen name="design_bottom_navigation_text_size" tools:override="true">10.5sp</dimen>
     <dimen name="design_bottom_navigation_active_text_size" tools:override="true">10.5sp</dimen>
     <dimen name="fab_size">56dp</dimen>
+    <dimen name="prof_icon">24dp</dimen>
 </resources>

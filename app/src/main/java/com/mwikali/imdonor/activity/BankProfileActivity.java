@@ -1,36 +1,38 @@
 package com.mwikali.imdonor.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.mwikali.imdonor.R;
-import com.mwikali.imdonor.utils.AppUtils;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.databinding.DataBindingUtil;
 
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
+import com.mwikali.imdonor.R;
+import com.mwikali.imdonor.databinding.ActivityBankProfileBinding;
+import com.mwikali.imdonor.models.UserBank;
+import com.mwikali.imdonor.utils.AppUtils;
 
 public class BankProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bank_profile);
+        ActivityBankProfileBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_bank_profile);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        UserBank userBank = new AppUtils().getBankUserAccount();
+        binding.setUserBank(userBank);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        MyClickHandlers handlers = new MyClickHandlers(getApplicationContext());
+        binding.setHandlers(handlers);
 
-            }
-        });
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -53,5 +55,17 @@ public class BankProfileActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public class MyClickHandlers {
+        Context context;
+
+        MyClickHandlers(Context context) {
+            this.context = context;
+        }
+
+        public void onFabClicked(View view) {
+            startActivity(new Intent(BankProfileActivity.this, SignUpBankDetails.class));
+        }
     }
 }

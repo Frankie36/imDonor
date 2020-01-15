@@ -1,40 +1,361 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activity.BankProfileActivity">
+<layout>
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+    <data>
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+        <variable
+            name="userBank"
+            type="com.mwikali.imdonor.models.UserBank" />
 
-    </com.google.android.material.appbar.AppBarLayout>
+        <variable
+            name="handlers"
+            type="com.mwikali.imdonor.activity.BankProfileActivity.MyClickHandlers" />
+    </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context=".activity.BankProfileActivity"
-        tools:showIn="@layout/activity_bank_profile">
+        tools:context=".activity.BankProfileActivity">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/element_spacing_normal"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:context=".activity.BankProfileActivity"
+            tools:showIn="@layout/activity_bank_profile">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/img_prof_name"
+                            android:layout_width="@dimen/prof_icon"
+                            android:layout_height="@dimen/prof_icon"
+                            android:tint="@color/material_grey_500"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_person_black_24dp" />
+
+                        <TextView
+                            android:id="@+id/tv_prof_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_large"
+                            android:layout_marginLeft="@dimen/spacing_large"
+                            android:text="@{userBank.name}"
+                            android:textColor="@color/body_text_1"
+                            android:textSize="@dimen/text_size_xlarge"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toEndOf="@id/img_prof_name"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="Bank name" />
+
+
+                        <TextView
+                            android:id="@+id/tv_prof_name_content"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_normal"
+                            android:text="@string/blood_bank_name"
+                            android:textColor="@color/body_text_2"
+                            android:textSize="@dimen/text_size_medium"
+                            app:layout_constraintStart_toStartOf="@id/tv_prof_name"
+                            app:layout_constraintTop_toBottomOf="@id/tv_prof_name" />
+
+
+                        <View
+                            android:layout_width="wrap_content"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/spacing_large"
+                            android:background="@color/material_grey_500"
+                            app:layout_constraintStart_toStartOf="@id/tv_prof_name_content"
+                            app:layout_constraintTop_toBottomOf="@id/tv_prof_name_content" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/img_prof_email"
+                            android:layout_width="@dimen/prof_icon"
+                            android:layout_height="@dimen/prof_icon"
+                            android:tint="@color/material_grey_500"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_email_black_24dp" />
+
+                        <TextView
+                            android:id="@+id/tv_prof_email"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_large"
+                            android:layout_marginLeft="@dimen/spacing_large"
+                            android:text="@{userBank.email}"
+                            android:textColor="@color/body_text_1"
+                            android:textSize="@dimen/text_size_xlarge"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toEndOf="@id/img_prof_email"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="Email" />
+
+
+                        <TextView
+                            android:id="@+id/tv_prof_email_content"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_normal"
+                            android:text="@string/email"
+                            android:textColor="@color/body_text_2"
+                            android:textSize="@dimen/text_size_medium"
+                            app:layout_constraintStart_toStartOf="@id/tv_prof_email"
+                            app:layout_constraintTop_toBottomOf="@id/tv_prof_email" />
+
+
+                        <View
+                            android:layout_width="wrap_content"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/spacing_large"
+                            android:background="@color/material_grey_500"
+                            app:layout_constraintStart_toStartOf="@id/tv_prof_email_content"
+                            app:layout_constraintTop_toBottomOf="@id/tv_prof_email_content" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/img_prof_phone"
+                            android:layout_width="@dimen/prof_icon"
+                            android:layout_height="@dimen/prof_icon"
+                            android:tint="@color/material_grey_500"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_phone_black_24dp" />
+
+                        <TextView
+                            android:id="@+id/tv_prof_phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_large"
+                            android:layout_marginLeft="@dimen/spacing_large"
+                            android:text="@{userBank.phone}"
+                            android:textColor="@color/body_text_1"
+                            android:textSize="@dimen/text_size_xlarge"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toEndOf="@id/img_prof_phone"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="0712345678" />
+
+
+                        <TextView
+                            android:id="@+id/tv_prof_phone_content"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_normal"
+                            android:text="@string/phone"
+                            android:textColor="@color/body_text_2"
+                            android:textSize="@dimen/text_size_medium"
+                            app:layout_constraintStart_toStartOf="@id/tv_prof_phone"
+                            app:layout_constraintTop_toBottomOf="@id/tv_prof_phone" />
+
+
+                        <View
+                            android:layout_width="wrap_content"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/spacing_large"
+                            android:background="@color/material_grey_500"
+                            app:layout_constraintStart_toStartOf="@id/tv_prof_phone_content"
+                            app:layout_constraintTop_toBottomOf="@id/tv_prof_phone_content" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/img_prof_county"
+                            android:layout_width="@dimen/prof_icon"
+                            android:layout_height="@dimen/prof_icon"
+                            android:tint="@color/material_grey_500"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_location_on_black_24dp" />
+
+                        <TextView
+                            android:id="@+id/tv_prof_county"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_large"
+                            android:layout_marginLeft="@dimen/spacing_large"
+                            android:text="@{userBank.county}"
+                            android:textColor="@color/body_text_1"
+                            android:textSize="@dimen/text_size_xlarge"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toEndOf="@id/img_prof_county"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="County" />
+
+
+                        <TextView
+                            android:id="@+id/tv_prof_county_content"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_normal"
+                            android:text="@string/county"
+                            android:textColor="@color/body_text_2"
+                            android:textSize="@dimen/text_size_medium"
+                            app:layout_constraintStart_toStartOf="@id/tv_prof_county"
+                            app:layout_constraintTop_toBottomOf="@id/tv_prof_county" />
+
+
+                        <View
+                            android:layout_width="wrap_content"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/spacing_large"
+                            android:background="@color/material_grey_500"
+                            app:layout_constraintStart_toStartOf="@id/tv_prof_county_content"
+                            app:layout_constraintTop_toBottomOf="@id/tv_prof_county_content" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/img_prof_town"
+                            android:layout_width="@dimen/prof_icon"
+                            android:layout_height="@dimen/prof_icon"
+                            android:tint="@color/material_grey_500"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_location_city_black_24dp" />
+
+                        <TextView
+                            android:id="@+id/tv_prof_town"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_large"
+                            android:layout_marginLeft="@dimen/spacing_large"
+                            android:text="@{userBank.town}"
+                            android:textColor="@color/body_text_1"
+                            android:textSize="@dimen/text_size_xlarge"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toEndOf="@id/img_prof_town"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="SouthPark" />
+
+
+                        <TextView
+                            android:id="@+id/tv_prof_town_content"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_normal"
+                            android:text="@string/town"
+                            android:textColor="@color/body_text_2"
+                            android:textSize="@dimen/text_size_medium"
+                            app:layout_constraintStart_toStartOf="@id/tv_prof_town"
+                            app:layout_constraintTop_toBottomOf="@id/tv_prof_town" />
+
+
+                        <View
+                            android:layout_width="wrap_content"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/spacing_large"
+                            android:background="@color/material_grey_500"
+                            app:layout_constraintStart_toStartOf="@id/tv_prof_town_content"
+                            app:layout_constraintTop_toBottomOf="@id/tv_prof_town_content" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/img_prof_street_address"
+                            android:layout_width="@dimen/prof_icon"
+                            android:layout_height="@dimen/prof_icon"
+                            android:tint="@color/material_grey_500"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_home_black_24dp" />
+
+                        <TextView
+                            android:id="@+id/tv_prof_street_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_large"
+                            android:layout_marginLeft="@dimen/spacing_large"
+                            android:text="@{userBank.streetAddress}"
+                            android:textColor="@color/body_text_1"
+                            android:textSize="@dimen/text_size_xlarge"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toEndOf="@id/img_prof_street_address"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="Street Address" />
+
+
+                        <TextView
+                            android:id="@+id/tv_prof_street_address_content"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_normal"
+                            android:text="@string/street_address"
+                            android:textColor="@color/body_text_2"
+                            android:textSize="@dimen/text_size_medium"
+                            app:layout_constraintStart_toStartOf="@id/tv_prof_street_address"
+                            app:layout_constraintTop_toBottomOf="@id/tv_prof_street_address" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabEditProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            android:onClick="@{handlers::onFabClicked}"
+            app:srcCompat="@drawable/ic_edit_black_24dp" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

@@ -112,6 +112,7 @@ public class DonorProfileActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_profile_donor, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
